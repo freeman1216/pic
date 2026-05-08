@@ -23,6 +23,6 @@ SECTIONS{
         __bss = .;
         *(.bss)
         __ebss = .;
-    } > SLOT_MEM 
+    } > SLOT_MEM
     
 }

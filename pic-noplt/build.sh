@@ -13,7 +13,7 @@ while [ $# -gt 0 ]; do
 	case "$1" in
 		slot)
 			arm-none-eabi-gcc $slotopts $code/slot.c -o build/slot.elf
-			arm-none-eabi-objcopy -O binary build/slot.elf build/slot.bin 	
+			arm-none-eabi-objcopy -O binary --set-section-flags .bss=alloc,load,content build/slot.elf build/slot.bin
 			xxd -i -n slot build/slot.bin > generated/slot.h
 			sed -i "s/unsigned char slot\[\]/const unsigned char slot\[\] __attribute__((used,section(\".slot\")))/g" generated/slot.h
 			;;
